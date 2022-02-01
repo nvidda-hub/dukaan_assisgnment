@@ -7,9 +7,17 @@ class SellerHomeView(View):
     def get(self, request):
         return render(request, "seller_home.html")
 
-class SellerSignInView(View):
+class SellerLogInView(View):
     def get(self, request):
-        return render(request, "seller_sign_in.html")
+        return render(request, "seller_login.html")
+
+class SellerRegistrationView(View):
+    def get(self, request):
+        return render(request, "seller_registration.html")
+
+class SellerOTPView(View):
+    def get(self, request):
+        return render(request, "otp.html")
 
 class SellerInventoryView(View):
     def get(self, request):
