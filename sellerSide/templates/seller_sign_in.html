@@ -1,0 +1,27 @@
+{% extends 'seller_base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body_content %}
+
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your phone number with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="OTP" class="form-label">OTP</label>
+            <input type="OTP" class="form-control" id="OTP">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="keep_me_sing_in">
+            <label class="form-check-label" for="keep_me_sing_in">Keep me sign in</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock body_content %}
