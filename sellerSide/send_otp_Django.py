@@ -4,7 +4,7 @@ from twilio.rest import Client
 
 def sendOTP(mobile, otp):
     account_sid = 'ACa784c1bde9531f25e8bc5acea82a5008'
-    auth_token = 'c7fc3eb75ea7fe7a922b9b4d3563fa78'
+    auth_token = '80d981d01d9636894e07af3a7a25a9b6'
     client = Client(account_sid, auth_token)
 
     message = client.messages \
