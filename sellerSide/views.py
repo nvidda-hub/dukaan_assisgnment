@@ -4,17 +4,51 @@ from .models import Account
 from django.contrib.auth.models import User
 import random
 from .send_otp_Django import sendOTP
+from django.contrib.auth import authenticate, login
 
 
 
 # Create your views here.
-class SellerHomeView(View):
-    def get(self, request):
-        return render(request, "seller_home.html")
 
-class SellerLogInView(View):
-    def get(self, request):
-        return render(request, "seller_login.html")
+def sellerHome(request):
+    return render(request, "seller_home.html")
+
+def login_attempt(request):
+    if request.method == 'POST':
+        mobile = request.POST.get('mobile')
+        
+        user = Account.objects.filter(mobile = mobile).first()
+        print("mobile-------------------->")
+        if user is None:
+            context = {'message' : 'User not found' , 'class' : 'danger' }
+            return render(request,'seller_login.html' , context)
+        
+        otp = str(random.randint(1000 , 9999))
+        user.otp = otp
+        user.save()
+        sendOTP(mobile , otp)
+        request.session['mobile'] = mobile
+        return redirect('sellerSide:login_otp')        
+    return render(request,'seller_login.html')
+
+
+def login_otp(request):
+    mobile = request.session['mobile']
+    context = {'mobile':mobile}
+    print("login_otp is called")
+    if request.method == 'POST':
+        otp = request.POST.get('otp')
+        profile = Account.objects.filter(mobile=mobile).first()
+        
+        if otp == profile.otp:
+            user = User.objects.get(id = profile.user.id)
+            login(request , user)
+            return redirect('sellerSide:sellerHome')
+        else:
+            context = {'message' : 'Wrong OTP' , 'class' : 'danger','mobile':mobile }
+            return render(request,'seller_login_otp.html' , context)
+    
+    return render(request,'seller_login_otp.html' , context)
 
 def register(request):
     if request.method == "POST":

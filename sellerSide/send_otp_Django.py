@@ -15,3 +15,6 @@ def sendOTP(mobile, otp):
         )
 
     return message.sid
+
+if __name__ == "__main__":
+    sendOTP(mobile='8851141572', otp="578123")

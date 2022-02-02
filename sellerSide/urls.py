@@ -6,10 +6,11 @@ app_name = 'sellerSide'
 
 urlpatterns = [
 
-    path('', views.SellerHomeView.as_view(), name="sellerHome"),
+    path('', views.sellerHome, name="sellerHome"),
     path('register/', views.register , name="sellerRegister"),
-    path('login/', views.SellerLogInView.as_view(), name="sellerLogin"),
+    path('login/', views.login_attempt, name="sellerLogin"),
     path('verify_otp/', views.verify_otp, name="verify_otp"),
+    path('login_verify_otp/', views.login_otp, name="login_otp"),
     path('inventory/', views.SellerInventoryView.as_view(), name="sellerInventory"),
     path('opened-stores/', views.SellerStoresView.as_view(), name="sellerStores"),
     path('new/store/', views.SellerNewStoreView.as_view(), name="sellerNewStore"),
