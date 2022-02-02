@@ -6,9 +6,9 @@ app_name = 'sellerSide'
 urlpatterns = [
 
     path('', views.SellerHomeView.as_view(), name="sellerHome"),
-    path('register/', views.SellerRegistrationView.as_view(), name="sellerRegister"),
+    path('register/', views.register , name="sellerRegister"),
     path('login/', views.SellerLogInView.as_view(), name="sellerLogin"),
-    path('otp/', views.SellerOTPView.as_view(), name="sellerLogin"),
+    path('verify_otp/', views.verify_otp, name="verify_otp"),
     path('inventory/', views.SellerInventoryView.as_view(), name="sellerInventory"),
     path('opened-stores/', views.SellerStoresView.as_view(), name="sellerStores"),
     path('new/store/', views.SellerNewStoreView.as_view(), name="sellerNewStore"),
